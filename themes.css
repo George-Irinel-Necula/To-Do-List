@@ -37,7 +37,7 @@
     #F937A9,#2E83C3
   );
 }
-.frosted-night {
+.frosted-midnight {
   background: linear-gradient(
     135deg,
     #FFB5E3,#4d18a3
@@ -114,6 +114,6 @@
   height: 10vw;
   top: 55%;
   left: 35%;
-   min-width: 100px; 
+  min-width: 100px; 
   min-height: 100px;
 }

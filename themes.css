@@ -1,0 +1,119 @@
+.volcano-sunset {
+  background: linear-gradient(
+    135deg,
+    #FB8347,#FB1462
+  );
+}
+
+.starfall-ember {
+  background: linear-gradient(
+    135deg,
+    #a694fc,#FB1D5A
+  );
+}
+
+.rose-quartz {
+  background: linear-gradient(
+    135deg,
+    #e43b55,#8f3ff8
+  );
+}
+
+.apricot-blush {
+  background: linear-gradient(
+    135deg,
+    #FFD3A6,#FD1A73
+  );
+}
+.cosmic-trinity {
+  background: linear-gradient(
+    135deg,
+    #4853C7,#B71C94
+  );
+}
+.electric-riptide {
+  background: linear-gradient(
+    135deg,
+    #F937A9,#2E83C3
+  );
+}
+.frosted-midnight {
+  background: linear-gradient(
+    135deg,
+    #FFB5E3,#4d18a3
+  );
+}
+.deep-twilight {
+  background: linear-gradient(
+    135deg,
+    #FF007F,#8A2BE2
+  );
+}
+
+.light-orb {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px); /* Massive blur for soft glow */
+  opacity: 0.3; /* Subtle visibility */
+  z-index: 0; /* Behind content */
+}
+@media (max-width:992px) {
+    .light-orb{
+        opacity: 0.4;
+    }
+}
+.orb-1 {
+  background-color: var(--color-primary); /* Violet */
+  width: 20vw;
+  height: 20vw;
+  top: 10%;
+  left: 10%;
+  min-width: 220px; 
+  min-height: 220px;
+}
+.orb-2 {
+  background-color: var(--color-secondary); /* Violet */
+  width: 20vw;
+  height: 20vw;
+  top: 80%;
+  left: -5%;
+   min-width: 250px; 
+  min-height: 250px;
+}
+.orb-3 {
+  background-color: var(--color-secondary); /* Violet */
+  width: 12vw;
+  height: 12vw;
+  top: 5%;
+  left: 55%;
+   min-width: 120px; 
+  min-height: 120px;
+}
+.orb-4 {
+  background-color: var(--color-primary); /* Violet */
+  width: 20vw;
+  height: 20vw;
+  top: 50%;
+  left: 65%;
+   min-width: 250px; 
+  min-height: 250px;
+}
+.orb-5 {
+  background-color: var(--color-secondary); /* Violet */
+  width: 20vw;
+  height: 20vw;
+  top: -10%;
+  left: 85%;
+   min-width: 250px; 
+  min-height: 250px;
+}
+.orb-6 {
+  background-color: var(--color-primary); /* Violet */
+  width: 10vw;
+  height: 10vw;
+  top: 55%;
+  left: 35%;
+  min-width: 100px; 
+  min-height: 100px;
+}

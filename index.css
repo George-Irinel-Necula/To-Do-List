@@ -80,6 +80,18 @@ body {
   }
   
 }
+
+@media (max-width:420px) {
+  .info{
+    flex-direction: column;
+    align-items: flex-start;
+    
+  }
+  .info > .badge {
+    margin-top: 0.25rem;
+  }
+  
+}
 .text-gradient-custom {
   background: linear-gradient(
     135deg,
@@ -125,7 +137,7 @@ body {
         var(--color-primary),
         var(--color-secondary)
     );
-
+  border-radius: 1rem;
 }
 
 .no-bg{

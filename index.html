@@ -10,8 +10,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
-  <script type="module" crossorigin src="/To-Do-List/assets/index-DTgwzCJl.js"></script>
-  <link rel="stylesheet" crossorigin href="/To-Do-List/assets/index-DIn_UEmO.css">
+    
+  <script type="module" crossorigin src="/To-Do-List/assets/index-B6UUnUqW.js"></script>
+  <link rel="stylesheet" crossorigin href="/To-Do-List/assets/index-CCNXQ7Wi.css">
 </head>
 
 <body data-theme="dracula-pastel-dark" class="">
@@ -23,6 +24,7 @@
         <div class="light-orb orb-5"></div>
         <div class="light-orb orb-6"></div>
     </div>
+    
     <!-- Nav -->
     <nav class="navbar p-0 sticky start-0 top-0 z-1 glass-nav">
         <div
@@ -50,14 +52,22 @@
                     </button>
                     <ul class="dropdown-menu dropdown-open:opacity-100 hidden min-w-50 bg-base-200" role="menu"
                         aria-orientation="vertical" aria-labelledby="dropdown-default">
-                        <li><a class="dropdown-item" href="#"><span class="size-5 volcano-sunset rounded-full"></span>Volcano Sunset</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="size-5 starfall-ember rounded-full"></span>Starfall Ember</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="size-5 rose-quartz rounded-full"></span>Rose Quartz</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="size-5 apricot-blush rounded-full"></span>Apricot Blush</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="size-5 cosmic-trinity rounded-full"></span>Cosmic Trinity</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="size-5 electric-riptide rounded-full"></span>Electric Riptide</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="size-5 frosted-midnight rounded-full"></span>Frosted Midnight</a></li>
-                        <li><a class="dropdown-item" href="#"><span class="size-5 deep-twilight rounded-full"></span>Deep Twilight</a></li>
+                        <li><a class="dropdown-item" href="#"><span
+                                    class="size-5 volcano-sunset rounded-full"></span>Volcano Sunset</a></li>
+                        <li><a class="dropdown-item" href="#"><span
+                                    class="size-5 starfall-ember rounded-full"></span>Starfall Ember</a></li>
+                        <li><a class="dropdown-item" href="#"><span class="size-5 rose-quartz rounded-full"></span>Rose
+                                Quartz</a></li>
+                        <li><a class="dropdown-item" href="#"><span
+                                    class="size-5 apricot-blush rounded-full"></span>Apricot Blush</a></li>
+                        <li><a class="dropdown-item" href="#"><span
+                                    class="size-5 cosmic-trinity rounded-full"></span>Cosmic Trinity</a></li>
+                        <li><a class="dropdown-item" href="#"><span
+                                    class="size-5 electric-riptide rounded-full"></span>Electric Riptide</a></li>
+                        <li><a class="dropdown-item" href="#"><span
+                                    class="size-5 frosted-midnight rounded-full"></span>Frosted Midnight</a></li>
+                        <li><a class="dropdown-item" href="#"><span
+                                    class="size-5 deep-twilight rounded-full"></span>Deep Twilight</a></li>
 
                     </ul>
                 </div>
@@ -95,7 +105,8 @@
                             </div>
                         </li>
                         <li>
-                            <a class="dropdown-item " href="https://www.linkedin.com/in/george-irinel-necula-5a2b78136/">
+                            <a class="dropdown-item "
+                                href="https://www.linkedin.com/in/george-irinel-necula-5a2b78136/">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
@@ -118,6 +129,10 @@
 
         </div>
     </nav>
+    <div class="alert alert-soft alert-error flex items-center absolute w-fit translate-x-full hidden" role="alert">
+  <span class="icon-[tabler--alert-triangle] shrink-0 size-6"></span>
+  <p><span class="text-lg font-semibold">Warning alert:</span> Stay informed about the latest updates and upcoming events.</p>
+</div>
     <!-- Description -->
     <div class="w-full h-fit mb-6 text-center p-8">
         <h1 class="text-4xl font-bold text-white mb-2">Your Tasks</h1>
@@ -138,7 +153,7 @@
             <label class="label-text" for="textareaLabel strike">Description</label>
             <textarea class="textarea" placeholder="Task Description" id="textareaLabel"></textarea>
         </div>
-        <button class="btn button-gradient-custom mt-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        <button class="btn button-gradient-custom mt-2 add-task"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus size-4">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -147,29 +162,15 @@
             </svg>Add Task</button>
     </div>
     <!-- Added Tasks -->
-    <div
-        class="card mx-auto flex justify-center glass-card p-6 gap-4 flex-col sm:w-3/4 lg:w-2/4 mt-8 overflow-scroll mb-12">
+     
+    <div class="card mx-auto flex justify-center glass-card p-6 gap-4 flex-col sm:w-3/4 lg:w-2/4 mt-8 overflow-scroll mb-12">
         <h1 class="text-xl font-bold text-white">My Tasks</h1>
-        <div class="task-card w-full bg-base-100 min-h-28 rounded-md py-4 px-2 justify-between">
-            <div class="flex gap-4 items-top">
-                <div class="pl-4"><input type="checkbox" class="checkbox checkbox-primary" id="defaultCheckbox1" /></div>
-                <div class="flex flex-col gap-2 w-full">
-                    <h1 class="task-title font-bold text-lg text-white">Exemple</h1>
-                    <p class="">Am scris ceva aici nu prea conteaza ce scriu bla bla bla Am scris ceva aici nu prea conteaza ce scriu bla bla bla Am scris ceva aici nu prea conteaza ce scriu bla bla bla</p>
-                    <div class="info flex items-center gap-1 text-xs mt-2">
-                        <h1 class="min-w-fit info">Date created: 12-12-2025</h1>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="currentColor" class="icon icon-tabler icons-tabler-filled size-3 icon-tabler-point">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" />
-                        </svg>
-                        <h1 class="min-w-fit info">Status: Pending</h1>
-                    </div>
-                </div>
-                <div><button class="p-1"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg></button></div>
+        <div class="task-list flex flex-col gap-4">
+  
             </div>
-        </div>
+    </div>
  
+        <script src="./script.js"></script>
 
 </body>
 

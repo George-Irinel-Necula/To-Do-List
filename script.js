@@ -11,6 +11,20 @@ function getDate(){
     return day+"-"+month+"-"+year;
 }
 
+function taskCardToggle() {
+    const listCard = document.querySelector(".task-list-container");
+    const taskListChildren = taskList.children.length;
+
+    if (taskListChildren > 0) {
+        listCard.classList.remove("hidden");
+        listCard.classList.add("flex");
+    } else {
+        listCard.classList.remove("flex");
+        listCard.classList.add("hidden");
+    }
+}
+
+
 function addTask(){
     let title_text=title.value
     let description_text=description.value
@@ -64,6 +78,7 @@ function addTask(){
     description.value=""
     saveTasks()
     
+    
 }
 
 addTaskButton.addEventListener("click",addTask)
@@ -75,6 +90,7 @@ function deleteTask(e){
         taskCard.remove()
     }
     saveTasks()
+    
 }
 
 taskList.addEventListener("click",deleteTask)
@@ -118,12 +134,13 @@ taskList.addEventListener("click",editTask)
 
 function saveTasks(){
     localStorage.setItem("storage",taskList.innerHTML)
+    taskCardToggle()
 }
 
 function loadTasks(){
-    taskList.innerHTML=localStorage.getItem("storage")
-
-    
+   taskList.insertAdjacentHTML("beforeend", localStorage.getItem("storage"))
+   taskCardToggle();                              
 }
+
 
 loadTasks()

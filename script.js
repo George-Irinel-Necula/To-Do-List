@@ -138,7 +138,7 @@ function saveTasks(){
 }
 
 function loadTasks(){
-   taskList.insertAdjacentHTML("beforeend", localStorage.getItem("storage"))
+   taskList.innerHTML=localStorage.getItem("storage")
    taskCardToggle();                              
 }
 

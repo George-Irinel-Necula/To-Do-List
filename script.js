@@ -1,22 +1,28 @@
-const title_input = document.querySelector("#defaultInput")
-const task_input=document.querySelector("#textareaLabel")
-const add_task=document.querySelector(".add-task")
-const task_list=document.querySelector(".task-list")
-
+const title = document.querySelector("#defaultInput")
+const description = document.querySelector("#textareaLabel")
+const taskList=document.querySelector(".task-list")
+const addTaskButton=document.querySelector(".add-task")
 
 function addTask(){
-    let title=title_input.value
-    let description=task_input.value
-
-    task_list.innerHTML+=`<div class="task-card w-full bg-base-100 min-h-28 rounded-md py-4 px-2 justify-between wrap-anywhere">
+    let title_text=title.value
+    let description_text=description.value
+    const warning=document.querySelector("#error-msg")
+    if(title.value==="" || description.value===""){
+        warning.classList.add("flex")
+        warning.classList.remove("hidden")
+    }
+    else{
+        warning.classList.remove("flex")
+        warning.classList.add("hidden")
+        taskList.insertAdjacentHTML(`beforeend`,`<div class="task-card w-full bg-base-100 min-h-28 rounded-md py-4 px-2 justify-between wrap-anywhere">
         <div class="flex gap-2 items-top">
-            <div class="pl-4 pr-2"><input type="checkbox" class="checkbox checkbox-primary" id="defaultCheckbox1" />
+            <div class="pl-4 pr-2"><input type="checkbox" class="checkbox checkbox-primary" id="defaultCheckbox1"/>
             </div>
             <div class="flex flex-col gap-2 w-full">
-                <h1 class="task-title font-bold text-lg text-white">${title}</h1>
-                <p class="">${description}</p>
+                <h1 class="task-title font-bold text-lg text-white">${title_text}</h1>
+                <p class="">${description_text}</p>
                 <div class="info flex items-center gap-1 text-xs mt-2 ">
-                    <h1 class="min-w-fit info badge badge-primary badge-soft">Date created:${getFullDate()}</h1>
+                    <h1 class="min-w-fit info badge badge-primary badge-soft">Date created:${getDate()}</h1>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="currentColor" class="icon icon-tabler icons-tabler-filled size-3 icon-tabler-point hidden sm:flex">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -42,60 +48,50 @@ function addTask(){
                 <button class="p-1 edit"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg></button>
             </div>
         </div>
-    </div>`
-
-    title_input.value="";
-    task_input.value="";
-    saveLocal()
-}
-
-function getFullDate(){
-    let date=new Date()
-    let day=date.getDate()
-    let month=date.getMonth()+1
-    let year=date.getFullYear()
-    let fullDate=day+"-"+month+"-"+year
-    return fullDate
-}
-
-function saveLocal(){
-    localStorage.setItem("storage", task_list.innerHTML)
-}
-
-function loadLocal(){
-    task_list.innerHTML=localStorage.getItem("storage")
-}
-
-task_list.addEventListener("click", function(e) {
-    let taskCard = e.target.closest(".task-card");
-
-    if (!taskCard) return; 
+    </div>`)
+    }
     
-    let title = taskCard.querySelector(".task-title");
-    let description = taskCard.querySelector("p");
+    
+    title.value=""
+    description.value=""
+}
+addTaskButton.addEventListener("click",addTask)
+
+taskList.addEventListener("click",function(e){
+    let clickedDelete=e.target.closest(".trash")
+    let checkbox=e.target.closest("#defaultCheckbox1")
+    let clickedCheck=e.target.closest("#defaultCheckbox1").checked
+    let taskCard=e.target.closest(".task-card")
     let status=taskCard.querySelector(".card-status")
-
-    if (e.target.closest(".trash")) {
-        taskCard.remove();
-        saveLocal()
+    if(clickedDelete){
+        taskCard.remove()
     }
-
-    if (e.target.tagName==="INPUT") {
-        title.classList.toggle("strike",e.target.checked);
-        description.classList.toggle("strike",e.target.checked);
-        status.classList.toggle("badge-success",e.target.checked)
-        status.classList.toggle("badge-warning",!e.target.checked)
+    if(clickedCheck){
+        status.textContent="Status:Completed"
+        status.classList.add("badge-success")
+        status.classList.remove("badge-warning")
+        checkbox.checked=true
         
-        if(e.target.checked===true){
-            status.textContent="Status:Completed"
-        }
-        else
-            status.textContent="Status:Pending"
-        
-        saveLocal() 
     }
-});
+    else{
+        status.textContent="Status:Pending"
+        status.classList.remove("badge-success")
+        status.classList.add("badge-warning")
+        checkbox.checked=false
+    }
+})
 
-add_task.addEventListener("click", addTask);
 
-loadLocal();
+function getDate(){
+    let dateObj=new Date();
+    let day=dateObj.getDate();
+    let month=dateObj.getMonth()+1;
+    let year=dateObj.getFullYear();
+    return day+"-"+month+"-"+year;
+}
+
+function saveTaskList(){
+    let taskList=document.querySelector
+}
+
+

@@ -152,3 +152,6 @@ body {
   text-decoration-thickness: 3px;
 }
 
+.profile{
+  display: none;
+}

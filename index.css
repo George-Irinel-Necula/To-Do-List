@@ -151,7 +151,3 @@ body {
   text-decoration-color: var(--color-primary);
   text-decoration-thickness: 3px;
 }
-
-.profile{
-  display: none;
-}

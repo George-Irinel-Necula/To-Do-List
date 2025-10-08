@@ -1,3 +1,5 @@
+let taskArray=[]
+let increment=0
 const title = document.querySelector("#defaultInput")
 const description = document.querySelector("#textareaLabel")
 const taskList=document.querySelector(".task-list")
@@ -24,10 +26,8 @@ function taskCardToggle() {
     }
 }
 
-
 function addTask(){
-    let title_text=title.value
-    let description_text=description.value
+
     const warning=document.querySelector("#error-msg")
     if(title.value==="" || description.value===""){
         warning.classList.add("flex")
@@ -36,15 +36,27 @@ function addTask(){
     else{
         warning.classList.remove("flex")
         warning.classList.add("hidden")
-        taskList.insertAdjacentHTML(`beforeend`,`<div class="task-card w-full bg-base-100 min-h-28 rounded-md py-4 px-2 justify-between wrap-anywhere">
+
+        const taskCard = {
+        id:increment,
+        title: title.value,
+        description: description.value,
+        checked: false,
+        date: getDate()
+    };
+
+        taskArray.push(taskCard)
+       increment++
+
+        taskList.insertAdjacentHTML(`beforeend`,`<div class="task-card w-full bg-base-100 min-h-28 rounded-md py-4 px-2 justify-between wrap-anywhere" id="${taskCard.id}" >
         <div class="flex gap-2 items-top">
-            <div class="pl-4 pr-2"><input type="checkbox" class="checkbox checkbox-primary" id="defaultCheckbox1"/>
+            <div class="pl-4 pr-2"><input type="checkbox" class="checkbox checkbox-primary" id="defaultCheckbox1" ${taskCard.checked === true ? "checked" : ""}/>
             </div>
             <div class="flex flex-col gap-2 w-full">
-                <h1 class="task-title font-bold text-lg text-white">${title_text}</h1>
-                <p class="">${description_text}</p>
+                <h1 class="task-title font-bold text-lg text-white">${taskCard.title}</h1>
+                <p class="">${taskCard.description}</p>
                 <div class="info flex items-center gap-1 text-xs mt-2 ">
-                    <h1 class="min-w-fit info badge badge-primary badge-soft">Date created:${getDate()}</h1>
+                    <h1 class="min-w-fit info badge badge-primary badge-soft">Date created:${taskCard.date}</h1>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="currentColor" class="icon icon-tabler icons-tabler-filled size-3 icon-tabler-point hidden sm:flex">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -73,12 +85,11 @@ function addTask(){
     </div>`)
     }
     
-    
     title.value=""
     description.value=""
-    saveTasks()
-    
-    
+    taskCardToggle()
+
+    console.log(taskArray)
 }
 
 addTaskButton.addEventListener("click",addTask)
@@ -90,8 +101,11 @@ function deleteTask(e){
     if(clickedDelete){
         taskCard.remove()
     }
-    saveTasks()
+    let index=taskCard.id
+    taskArray.splice(index,1)
     
+    console.log(taskArray)
+    //Ar trebuii sa dau pop din array la elemetul sters
 }
 
 taskList.addEventListener("click",deleteTask)
@@ -127,25 +141,16 @@ function editTask(e){
     let titleCard=taskCard.querySelector(".task-title")
     let descriptionCard=taskCard.querySelector("P")
     
-        title.value=titleCard.textContent
-        description.value=descriptionCard.textContent
+    title.value=titleCard.textContent
+    description.value=descriptionCard.textContent
+    if(edit){
         taskCard.remove()
-
-    
+    }
+    let index=taskCard.id
+    taskArray.splice(index,1)
+    console.log(taskArray)
+    //Ar trebuii sa pun valorile in input , 
+    //sa iau indexul din array sa sterg obiectul din lista , dupa sa apelez functia de adaugare cu valorile editate din input field
     
 }
-
 taskList.addEventListener("click",editTask)
-
-function saveTasks(){
-    localStorage.setItem("storage",taskList.innerHTML)
-    taskCardToggle()
-}
-
-function loadTasks(){
-   taskList.innerHTML=localStorage.getItem("storage")
-   taskCardToggle();                              
-}
-
-
-loadTasks()

@@ -1,3 +1,4 @@
 import 'flyonui/flyonui.js';
-import './script2.js'
+import './script.js'
+import './theme.js'
 

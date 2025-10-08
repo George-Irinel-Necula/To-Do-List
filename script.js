@@ -1,50 +1,41 @@
-const title = document.querySelector("#defaultInput")
-const description = document.querySelector("#textareaLabel")
-const taskList=document.querySelector(".task-list")
-const addTaskButton=document.querySelector(".add-task")
+let taskArray = [];
+const title = document.querySelector("#defaultInput");
+const description = document.querySelector("#textareaLabel");
+const taskList = document.querySelector(".task-list");
+const addTaskButton = document.querySelector(".add-task");
+let increment=0
 
-function getDate(){
-    let dateObj=new Date();
-    let day=dateObj.getDate();
-    let month=dateObj.getMonth()+1;
-    let year=dateObj.getFullYear();
-    return day+"-"+month+"-"+year;
+function getDate() {
+  let dateObj = new Date();
+  let day = dateObj.getDate();
+  let month = dateObj.getMonth() + 1;
+  let year = dateObj.getFullYear();
+  return day + "-" + month + "-" + year;
 }
 
 function taskCardToggle() {
-    const listCard = document.querySelector(".task-list-container");
-    const taskListChildren = taskList.children.length;
+  const listCard = document.querySelector(".task-list-container");
+  const taskListChildren = taskList.children.length;
 
-    if (taskListChildren > 0) {
-        listCard.classList.remove("hidden");
-        listCard.classList.add("flex");
-    } else {
-        listCard.classList.remove("flex");
-        listCard.classList.add("hidden");
-    }
+  if (taskArray.length > 0) {
+    listCard.classList.remove("hidden");
+    listCard.classList.add("flex");
+  } else {
+    listCard.classList.remove("flex");
+    listCard.classList.add("hidden");
+  }
 }
 
-
-function addTask(){
-    let title_text=title.value
-    let description_text=description.value
-    const warning=document.querySelector("#error-msg")
-    if(title.value==="" || description.value===""){
-        warning.classList.add("flex")
-        warning.classList.remove("hidden")
-    }
-    else{
-        warning.classList.remove("flex")
-        warning.classList.add("hidden")
-        taskList.insertAdjacentHTML(`beforeend`,`<div class="task-card w-full bg-base-100 min-h-28 rounded-md py-4 px-2 justify-between wrap-anywhere">
+function renderTasks(taskCard) {
+    taskList.insertAdjacentHTML(`beforeend`,`<div class="task-card w-full bg-base-100 min-h-28 rounded-md py-4 px-2 justify-between wrap-anywhere" id="${taskCard.id}" >
         <div class="flex gap-2 items-top">
-            <div class="pl-4 pr-2"><input type="checkbox" class="checkbox checkbox-primary" id="defaultCheckbox1"/>
+            <div class="pl-4 pr-2"><input type="checkbox" class="checkbox checkbox-primary" id="defaultCheckbox1" ${taskCard.checked === true ? "checked" : ""}/>
             </div>
             <div class="flex flex-col gap-2 w-full">
-                <h1 class="task-title font-bold text-lg text-white">${title_text}</h1>
-                <p class="">${description_text}</p>
+                <h1 class="task-title font-bold text-lg text-white">${taskCard.title}</h1>
+                <p class="">${taskCard.description}</p>
                 <div class="info flex items-center gap-1 text-xs mt-2 ">
-                    <h1 class="min-w-fit info badge badge-primary badge-soft">Date created:${getDate()}</h1>
+                    <h1 class="min-w-fit info badge badge-primary badge-soft">Date created:${taskCard.date}</h1>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="currentColor" class="icon icon-tabler icons-tabler-filled size-3 icon-tabler-point hidden sm:flex">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -71,81 +62,101 @@ function addTask(){
             </div>
         </div>
     </div>`)
-    }
-    
-    
-    title.value=""
-    description.value=""
-    saveTasks()
-    
-    
 }
 
-addTaskButton.addEventListener("click",addTask)
+function addTask() {
+  const warning = document.querySelector("#error-msg");
+  if (title.value === "" || description.value === "") {
+    warning.classList.add("flex");
+    warning.classList.remove("hidden");
+  } else {
+    warning.classList.remove("flex");
+    warning.classList.add("hidden");
+    const taskCard = {
+      id: increment,
+      title: title.value,
+      description: description.value,
+      checked: false,
+      date: getDate(),
+    };
 
-function deleteTask(e){
-    let clickedDelete=e.target.closest(".trash")
-    if(!clickedDelete) return
-    let taskCard=e.target.closest(".task-card")
-    if(clickedDelete){
-        taskCard.remove()
-    }
-    saveTasks()
-    
+    taskArray.push(taskCard);
+    increment++
+    renderTasks(taskCard)
+  }
+
+  title.value = "";
+  description.value = "";
+  taskCardToggle();
+
+  console.log(taskArray);
 }
 
-taskList.addEventListener("click",deleteTask)
+addTaskButton.addEventListener("click", addTask);
 
-function checkTask(e){
-    let checkbox=e.target.closest("#defaultCheckbox1")
-    if(!checkbox) return
-    let taskCard=e.target.closest(".task-card")
-    let status=taskCard.querySelector(".card-status")
-    let title=taskCard.querySelector(".task-title")
-    let paragraph=taskCard.querySelector("P")
-    if(checkbox.checked){
-    status.classList.replace("badge-warning","badge-success")
-    checkbox.checked=true
-    status.textContent="Status:Completed"
-    }
-    else{
-        status.classList.replace("badge-success","badge-warning")
-        status.textContent="Status:Pending"
-        checkbox.checked=false
-    }
-      title.classList.toggle("strike")
-      paragraph.classList.toggle("strike")
-    saveTasks()
+function deleteTask(taskCard) {
+  const taskId = parseInt(taskCard.id);
+  taskArray = taskArray.filter(task => {
+  if (task.id !== taskId) {
+    return true;
+  }})
+  taskCard.remove();
+  console.log(taskArray);
+  taskCardToggle();
 }
 
-taskList.addEventListener("click",checkTask)
-
-function editTask(e){
-    let edit=e.target.closest(".edit")
-    if(!edit) return
-    let taskCard=e.target.closest(".task-card")
-    let titleCard=taskCard.querySelector(".task-title")
-    let descriptionCard=taskCard.querySelector("P")
-    
-        title.value=titleCard.textContent
-        description.value=descriptionCard.textContent
-        taskCard.remove()
-
-    
-    
+function clickDelete(e) {
+  let clickedDelete = e.target.closest(".trash");
+  if (!clickedDelete) return;
+  let taskCard = e.target.closest(".task-card");
+  if (clickedDelete) {
+    deleteTask(taskCard)
+  }
+  taskCardToggle()
+  //Ar trebuii sa dau pop din array la elemetul sters
 }
 
-taskList.addEventListener("click",editTask)
+taskList.addEventListener("click", clickDelete);
 
-function saveTasks(){
-    localStorage.setItem("storage",taskList.innerHTML)
-    taskCardToggle()
+function checkTask(e) {
+  let checkbox = e.target.closest("#defaultCheckbox1");
+  if (!checkbox) return;
+  let taskCard = e.target.closest(".task-card");
+  let status = taskCard.querySelector(".card-status");
+  let title = taskCard.querySelector(".task-title");
+  let paragraph = taskCard.querySelector("P");
+  if (checkbox.checked) {
+    status.classList.replace("badge-warning", "badge-success");
+    checkbox.checked = true;
+    status.textContent = "Status:Completed";
+  } else {
+    status.classList.replace("badge-success", "badge-warning");
+    status.textContent = "Status:Pending";
+    checkbox.checked = false;
+  }
+  title.classList.toggle("strike");
+  paragraph.classList.toggle("strike");
+  saveTasks();
 }
 
-function loadTasks(){
-   taskList.innerHTML=localStorage.getItem("storage")
-   taskCardToggle();                              
+taskList.addEventListener("click", checkTask);
+
+function editTask(e) {
+  let edit = e.target.closest(".edit");
+  if (!edit) return;
+  let taskCard = e.target.closest(".task-card");
+  let titleCard = taskCard.querySelector(".task-title");
+  let descriptionCard = taskCard.querySelector("P");
+
+  title.value = titleCard.textContent;
+  description.value = descriptionCard.textContent;
+  if (edit) {
+    deleteTask(taskCard)
+  }
+
+  //Ar trebuii sa pun valorile in input ,
+  //sa iau indexul din array sa sterg obiectul din lista , dupa sa apelez functia de adaugare cu valorile editate din input field
 }
+taskList.addEventListener("click", editTask);
 
 
-loadTasks()

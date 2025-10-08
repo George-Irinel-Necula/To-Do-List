@@ -1,3 +1,10 @@
+.dracula-pastel{
+  background: linear-gradient(
+    135deg,
+    oklch(75.461% 0.183 346.812),oklch(74.202% 0.148 301.883)
+  );
+}
+
 .volcano-sunset {
   background: linear-gradient(
     135deg,
@@ -55,7 +62,7 @@
   border-radius: 50%;
   pointer-events: none;
   filter: blur(80px); /* Massive blur for soft glow */
-  opacity: 0.3; /* Subtle visibility */
+  opacity: 0.22; /* Subtle visibility */
   z-index: 0; /* Behind content */
 }
 @media (max-width:992px) {
@@ -116,4 +123,11 @@
   left: 35%;
   min-width: 100px; 
   min-height: 100px;
+}
+
+.selected{
+  border:2px solid var(--color-primary);
+  border-radius: 1rem;
+  background-color:color-mix(in oklab, var(--btn-color, var(--color-neutral)) 20%, var(--color-base-100));
+  
 }

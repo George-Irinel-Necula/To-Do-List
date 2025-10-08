@@ -15,6 +15,7 @@ export default defineConfig({
           if (name && name.endsWith('.css')) return 'assets/index.css';
           return 'assets/[name]-[hash][extname]'; 
         },
+        
       },
     },
     cssCodeSplit: true, // ensures CSS is separate

@@ -85,6 +85,7 @@ addTaskButton.addEventListener("click",addTask)
 
 function deleteTask(e){
     let clickedDelete=e.target.closest(".trash")
+    if(!clickedDelete) return
     let taskCard=e.target.closest(".task-card")
     if(clickedDelete){
         taskCard.remove()
@@ -97,6 +98,7 @@ taskList.addEventListener("click",deleteTask)
 
 function checkTask(e){
     let checkbox=e.target.closest("#defaultCheckbox1")
+    if(!checkbox) return
     let taskCard=e.target.closest(".task-card")
     let status=taskCard.querySelector(".card-status")
     let title=taskCard.querySelector(".task-title")
@@ -120,6 +122,7 @@ taskList.addEventListener("click",checkTask)
 
 function editTask(e){
     let edit=e.target.closest(".edit")
+    if(!edit) return
     let taskCard=e.target.closest(".task-card")
     let titleCard=taskCard.querySelector(".task-title")
     let descriptionCard=taskCard.querySelector("P")
@@ -127,6 +130,8 @@ function editTask(e){
         title.value=titleCard.textContent
         description.value=descriptionCard.textContent
         taskCard.remove()
+
+    
     
 }
 

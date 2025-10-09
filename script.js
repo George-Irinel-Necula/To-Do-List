@@ -26,6 +26,16 @@ function taskCardToggle() {
   }
 }
 
+function updateIDs(){
+  for(let i=0;i<taskArray.length;i++){
+    taskArray[i].id=i
+  }
+}
+
+function unRender(){
+  taskList.innerHTML=""
+}
+
 function renderTasks(taskCard) {
     taskList.insertAdjacentHTML(`beforeend`,`<div class="task-card w-full bg-base-100 min-h-28 rounded-md py-4 px-2 justify-between wrap-anywhere" id="${taskCard.id}" >
         <div class="flex gap-2 items-top">
@@ -73,7 +83,7 @@ function addTask() {
     warning.classList.remove("flex");
     warning.classList.add("hidden");
     const taskCard = {
-      id: increment,
+      id: taskArray.length,
       title: title.value,
       description: description.value,
       checked: false,
@@ -92,6 +102,7 @@ function addTask() {
   console.log(taskArray);
 }
 
+
 addTaskButton.addEventListener("click", addTask);
 
 function deleteTask(taskCard) {
@@ -100,7 +111,6 @@ function deleteTask(taskCard) {
   if (task.id !== taskId) {
     return true;
   }})
-  taskCard.remove();
   console.log(taskArray);
   taskCardToggle();
 }
@@ -111,6 +121,11 @@ function clickDelete(e) {
   let taskCard = e.target.closest(".task-card");
   if (clickedDelete) {
     deleteTask(taskCard)
+  }
+  unRender()
+  updateIDs()
+  for(let i=0;i<taskArray.length;i++){
+    renderTasks(taskArray[i])
   }
   taskCardToggle()
   //Ar trebuii sa dau pop din array la elemetul sters
@@ -153,7 +168,12 @@ function editTask(e) {
   if (edit) {
     deleteTask(taskCard)
   }
-
+  unRender()
+  updateIDs()
+  for(let i=0;i<taskArray.length;i++){
+    renderTasks(taskArray[i])
+  }
+  taskCardToggle()
   //Ar trebuii sa pun valorile in input ,
   //sa iau indexul din array sa sterg obiectul din lista , dupa sa apelez functia de adaugare cu valorile editate din input field
 }

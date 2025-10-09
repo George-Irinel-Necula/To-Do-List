@@ -3,7 +3,6 @@ const title = document.querySelector("#defaultInput");
 const description = document.querySelector("#textareaLabel");
 const taskList = document.querySelector(".task-list");
 const addTaskButton = document.querySelector(".add-task");
-let increment=0
 
 function getDate() {
   let dateObj = new Date();
@@ -91,7 +90,6 @@ function addTask() {
     };
 
     taskArray.push(taskCard);
-    increment++
     renderTasks(taskCard)
   }
 

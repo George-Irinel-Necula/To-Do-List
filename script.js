@@ -42,7 +42,7 @@ function renderTasks(taskCard) {
       taskCard.id
     }" >
         <div class="flex gap-2 items-top">
-            <div class="pl-4 pr-2"><input type="checkbox" class="checkbox checkbox-primary" id="defaultCheckbox1" ${
+            <div class="pl-4 pr-2"><input type="checkbox" class="checkbox checkbox-primary task-check" ${
               taskCard.checkboxStatus === true ? "checked" : ""
             }/>
             </div>
@@ -145,7 +145,7 @@ function clickDelete(e) {
 taskList.addEventListener("click", clickDelete);
 
 function checkTask(e) {
-  let checkbox = e.target.closest("#defaultCheckbox1");
+  let checkbox = e.target.closest(".task-check");
   if (!checkbox) return;
   let taskCard = e.target.closest(".task-card");
   let status = taskCard.querySelector(".card-status");
@@ -198,9 +198,12 @@ function saveTasks() {
 function loadTasks() {
   taskArray = JSON.parse(localStorage.getItem("test"));
   taskCardToggle();
+  if(taskArray.length>0){
   taskArray.forEach((task) => {
     renderTasks(task);
-  });
-  console.log(taskArray);
+  })
+  console.log(taskArray);}
 }
-loadTasks();
+
+loadTasks()
+

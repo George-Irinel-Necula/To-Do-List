@@ -1,7 +1,7 @@
 const themeList=document.querySelector(".theme-selector")
 function changeTheme (tag){
     const body=document.querySelector("BODY")
-    const target=tag.target
+    const target=tag.target.closest("A")
     let themeName=target.id
     body.setAttribute("data-theme",themeName)
     console.log(themeName)

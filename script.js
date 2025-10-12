@@ -47,10 +47,14 @@ window.addEventListener("load", () => {
               }/>
               </div>
               <div class="flex flex-col gap-2 w-full">
-                  <h1 class="task-title font-bold text-lg text-white">${
+                  <h1 class="task-title font-bold text-lg text-white ${
+                taskCard.checkboxStatus === true ? "strike" : ""
+              } ">${
                     taskCard.title
                   }</h1>
-                  <p class="">${taskCard.description}</p>
+                  <p class="${
+                taskCard.checkboxStatus === true ? "strike" : ""
+              }">${taskCard.description}</p>
                   <div class="info flex items-center gap-1 text-xs mt-2 ">
                       <h1 class="min-w-fit info badge badge-primary badge-soft">Date created:${
                         taskCard.date

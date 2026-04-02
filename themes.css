@@ -4,8 +4,8 @@
   themes: black --prefersdark;
 }
 
-@import "./node_modules/flyonui/variants.css"; /* Require only if you want to use FlyonUI JS component */
-@source "./node_modules/flyonui/dist/index.js"; /* Require only if you want to use FlyonUI JS component */
+@import "./node_modules/flyonui/variants.css"; 
+@source "./node_modules/flyonui/dist/index.js"; 
 @plugin "@iconify/tailwind4";
 
 @plugin "flyonui/theme" {
@@ -148,7 +148,7 @@
   --noise: 0;
 }
 
-/* Rose Quartz */
+
 @plugin "flyonui/theme" {
   name: "rose-quartz";
   default: false;
@@ -196,7 +196,7 @@
   --noise: 0;
 }
 
-/* Apricot Blush */
+
 @plugin "flyonui/theme" {
   name: "apricot-blush";
   default: false;
@@ -244,7 +244,7 @@
   --noise: 0;
 }
 
-/* Cosmic Trinity */
+
 @plugin "flyonui/theme" {
   name: "cosmic-trinity";
   default: false;
@@ -292,7 +292,7 @@
   --noise: 0;
 }
 
-/* Electric Riptide */
+
 @plugin "flyonui/theme" {
   name: "electric-riptide";
   default: false;
@@ -340,7 +340,7 @@
   --noise: 0;
 }
 
-/* Frosted Midnight */
+
 @plugin "flyonui/theme" {
   name: "frosted-midnight";
   default: false;
@@ -388,7 +388,7 @@
   --noise: 0;
 }
 
-/* Deep Twilight */
+
 @plugin "flyonui/theme" {
   name: "deep-twilight";
   default: false;
@@ -513,9 +513,9 @@ body,html {
   position: fixed;
   border-radius: 50%;
   pointer-events: none;
-  filter: blur(80px); /* Massive blur for soft glow */
-  opacity: 0.22; /* Subtle visibility */
-  z-index: 0; /* Behind content */
+  filter: blur(80px); 
+  opacity: 0.22;
+  z-index: 0; 
 }
 @media (max-width:992px) {
     .light-orb{
@@ -523,7 +523,7 @@ body,html {
     }
 }
 .orb-1 {
-  background-color: var(--color-primary); /* Violet */
+  background-color: var(--color-primary);
   width: 20vw;
   height: 20vw;
   top: 10%;
@@ -532,7 +532,7 @@ body,html {
   min-height: 220px;
 }
 .orb-2 {
-  background-color: var(--color-secondary); /* Violet */
+  background-color: var(--color-secondary);
   width: 20vw;
   height: 20vw;
   top: 80%;
@@ -541,7 +541,7 @@ body,html {
   min-height: 250px;
 }
 .orb-3 {
-  background-color: var(--color-secondary); /* Violet */
+  background-color: var(--color-secondary); 
   width: 12vw;
   height: 12vw;
   top: 5%;
@@ -550,7 +550,7 @@ body,html {
   min-height: 120px;
 }
 .orb-4 {
-  background-color: var(--color-primary); /* Violet */
+  background-color: var(--color-primary);
   width: 20vw;
   height: 20vw;
   top: 50%;
@@ -559,7 +559,7 @@ body,html {
   min-height: 250px;
 }
 .orb-5 {
-  background-color: var(--color-secondary); /* Violet */
+  background-color: var(--color-secondary); 
   width: 20vw;
   height: 20vw;
   top: -10%;
@@ -568,7 +568,7 @@ body,html {
   min-height: 250px;
 }
 .orb-6 {
-  background-color: var(--color-primary); /* Violet */
+  background-color: var(--color-primary);
   width: 10vw;
   height: 10vw;
   top: 55%;
